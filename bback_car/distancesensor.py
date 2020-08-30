@@ -155,7 +155,7 @@ class distanceSensor(Node):
     def sendDirection(self):
         msg = Int32()
         self.direction = self.forwardDirection # go backward
-        if 20 > self.frontdistance:
+        if 30 > self.frontdistance:
             self.distance = self.frontdistance
             self.direction = self.rightDirection # go backward
         if 30 > self.leftdistance:

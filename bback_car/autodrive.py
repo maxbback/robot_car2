@@ -15,7 +15,8 @@ class AutoDrive(Node):
             Int32,
             'direction',
             self.listener_callback,1)
-#            self.listener_callback,rclpy.qos.QoSPresetProfiles.SENSOR_DATA)
+#            self.listener_callback,rmw_qos_profile_sensor_data)
+#https://github.com/ros2/rmw/blob/8ea66dbbe89e78318cd2f2b4e7d8da51211d67bb/rmw/include/rmw/qos_profiles.h
         self.subscription  # prevent unused variable warning
         self.pinMotorAForwards = 9
         self.pinMotorABackwards = 10
@@ -108,7 +109,7 @@ class AutoDrive(Node):
 
     def listener_callback(self, msg):
         self.get_logger().info('I heard: "%d"' % msg.data)
-        if msg.data < 10:
+        if msg.data == 10:
             self.stopDirection = 0
             self.leftDirection = 1
             self.rightDirection = 2
