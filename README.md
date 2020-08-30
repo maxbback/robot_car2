@@ -1,5 +1,18 @@
 # robot_car2
 Multi sensor autodriving car
+
+Current key objectives:
+- Avoid objects by moving forward and turning around (sensors is only in front and on the sides)
+- Variable speed, slow down when closer to objects
+
+Next key level of objective:
+- Follow the walls
+- Avoid getting trapped, one sugestion is to reverse movements if we are stuck
+
+Comming objectives
+- attach camera, use it for recognition
+- map room
+
 Core components:
 2 Motors + battery pack for motors
 Motor controller board
