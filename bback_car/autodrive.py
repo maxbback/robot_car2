@@ -5,6 +5,8 @@ import time
 import sys
 import signal
 from std_msgs.msg import Int32
+from rclpy.exceptions import ParameterNotDeclaredException
+from rcl_interfaces.msg import ParameterType
 
 
 class AutoDrive(Node):
@@ -15,9 +17,32 @@ class AutoDrive(Node):
             Int32,
             'direction',
             self.listener_callback,1)
-#            self.listener_callback,rmw_qos_profile_sensor_data)
+#           self.listener_callback,rmw_qos_profile_sensor_data)
 #https://github.com/ros2/rmw/blob/8ea66dbbe89e78318cd2f2b4e7d8da51211d67bb/rmw/include/rmw/qos_profiles.h
         self.subscription  # prevent unused variable warning
+
+        self.speed_subscription = self.create_subscription(
+            Int32,
+            'distance',
+            self.speed_listener_callback,1)
+#           self.listener_callback,rmw_qos_profile_sensor_data)
+#https://github.com/ros2/rmw/blob/8ea66dbbe89e78318cd2f2b4e7d8da51211d67bb/rmw/include/rmw/qos_profiles.h
+        self.speed_subscription  # prevent unused variable warning
+
+        #define parameeters
+        self.declare_parameter("speed")
+        my_new_param = rclpy.parameter.Parameter(
+            "speed",
+            rclpy.Parameter.Type.INTEGER,
+            30
+        )
+        all_new_parameters = [my_new_param]
+        self.set_parameters(all_new_parameters)
+
+        self.speed = self.get_parameter("speed").get_parameter_value().integer_value
+
+        self.get_logger().info('Speed limit: "%d"' % self.speed)
+
         self.pinMotorAForwards = 9
         self.pinMotorABackwards = 10
         self.pinMotorBForwards = 7
@@ -109,7 +134,7 @@ class AutoDrive(Node):
 
     def listener_callback(self, msg):
         self.get_logger().info('I heard: "%d"' % msg.data)
-        if msg.data == 10:
+        if msg.data < 10:
             self.stopDirection = 0
             self.leftDirection = 1
             self.rightDirection = 2
@@ -128,7 +153,17 @@ class AutoDrive(Node):
 #            time.sleep(1)
 #            self.stopmotors()
 
-
+    def speed_listener_callback(self,msg):
+        self.get_logger().info('I heard distance: "%d"' % msg.data)
+        if msg.data > 100:
+            self.DutyCycleA = 40
+            self.DutyCycleB = 40
+        elif msg.data > 30:
+            self.DutyCycleA = 30
+            self.DutyCycleB = 30
+        else:
+            self.DutyCycleA = 20
+            self.DutyCycleB = 20
 
 def main(args=None):
     rclpy.init(args=args)
