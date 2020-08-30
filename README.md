@@ -10,3 +10,4 @@ You also need a bunch of cabels
 
 [![Watch the video](image_car2/robot_car2_front.jpeg)](image_car2/robot_car2_test1.mov)
 [![Watch the video](image_car2/robot_car2_test1.mov)](image_car2/robot_car2_test1.mov)
+![](image_car2/robot_car2_test1.mov)
