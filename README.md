@@ -4,6 +4,7 @@ Multi sensor autodriving car
 Current key objectives:
 - Avoid objects by moving forward and turning around (sensors is only in front and on the sides)
 - Variable speed, slow down when closer to objects
+status: meet
 
 Next key level of objective:
 - Follow the walls
