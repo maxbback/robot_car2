@@ -40,10 +40,18 @@ class distanceSensor(Node):
         self.distancepublisher = self.create_publisher(Int32, 'distance', 1)
         self.directionpublisher = self.create_publisher(Int32, 'direction', 1)
 
+        self.stopDirection = 0
+        self.leftDirection = 1
+        self.rightDirection = 2
+        self.forwardDirection = 3
+        self.backwardDirection = 4
+
         self.leftdistance = 100
         self.frontdistance = 100
         self.rightdistance = 100
         self.distance = 100
+        self.direction = self.forwardDirection
+        self.directionLast = -1
 
         GPIO.setmode(GPIO.BCM)
         self.frontTrig = 17 # 7th
@@ -53,11 +61,6 @@ class distanceSensor(Node):
         self.rightTrig = 24 # 7th
         self.rightEcho = 25 # 6th
 
-        self.stopDirection = 0
-        self.leftDirection = 1
-        self.rightDirection = 2
-        self.forwardDirection = 3
-        self.backwardDirection = 4
 
         GPIO.setup(self.frontTrig, GPIO.OUT)
         GPIO.setup(self.frontEcho, GPIO.IN)
@@ -174,7 +177,9 @@ class distanceSensor(Node):
         msg.data = self.distance
         self.distancepublisher.publish(msg)
         msg.data = self.direction
-        self.directionpublisher.publish(msg)
+        if self.direction != self.directionLast:
+            self.directionpublisher.publish(msg)
+            self.directionLast = self.direction
 
     def timer_callback(self):
         msg = Int32()
