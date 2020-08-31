@@ -37,6 +37,7 @@ To handle this I am using two nodes
 Current improvement areas is
 - When direction is not forward use distance to optimize where to go, try turn and if forward distance is ok go forward a litle
 - But in general a  smarter algorithm for movement is needed
+[![Watch the video](https://youtu.be/d5yBfNilb-g)](image_car2/robot_car2_front.jpeg)
 [![Watch the video](image_car2/robot_car2_front.jpeg)](image_car2/robot_car2_front.jpeg)
 [![Watch the video](image_car2/IMG_2048.jpeg)](image_car2/IMG_2048.jpeg)
 [![Watch the video](image_car2/IMG_2049.jpeg)](image_car2/IMG_2049.jpeg)
