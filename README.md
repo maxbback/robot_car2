@@ -1,4 +1,6 @@
 # robot_car2
+Moving this to version 2
+- Adding ardunio card for sensor data collection
 Multi sensor autodriving car
 
 Current key objectives:
@@ -14,13 +16,39 @@ Comming objectives
 - attach camera, use it for recognition
 - map room
 
+
+Version 2, is inproved by moving ultrasonic side sensors more to the front and replacing side sensors with ir sensors (10-80 cm)
+With the new ultrasonic coverage in the front we get a better view of if we are risking to hit an obstacle.
 Core components:
 2 Motors + battery pack for motors
 Motor controller board
 Raspberry pi
 3 HC-SR04 ultrasonci sensors
-My starting kit was a camjam/edukit complemented with 3 HC-SR04 and labboard
+3 Sharp IR distance sensors
+Arduino Nano kompatibelt V3.0 ATMEGA328 
 You also need a bunch of cabels
+
+With the arduino providing analogical input for IR sensors, and I also moved my ultrasonic sensors to arduino.
+My sendor prints the result in a : separated format to be onsumed by ros node
+Sensor code has been improved to handle some of the non connsisent values from ultrasonic sensors, sometime they generate a high value if it can not get a corrct measuare and that is ignored and previous distance is used.
+See ardunio directory.
+For IR sensors I used a library for SHARP ir sensors to calculate the right distance based on a complex response curve.
+https://drive.google.com/file/d/1yglX0lYazxgC3TkjZ83E_IVw0gYlycW0/view
+
+
+
+
+
+Version 1
+Core components:
+2 Motors + battery pack for motors
+Motor controller board
+Raspberry pi
+3 HC-SR04 ultrasonci sensors
+You also need a bunch of cabels
+Current improvement areas is
+- When direction is not forward use distance to optimize where to go, try turn and if forward distance is ok go forward a litle
+- But in general a  smarter algorithm for movement is needed
 
 To handle this I am using two nodes
 - A distance dection node, wich is a bit of the smart part identifying where to to go and keeping track of distnace
@@ -34,9 +62,7 @@ To handle this I am using two nodes
 -- Distance information is used to controle the speed
 -- Direction is the guidance for which direction to drive to
 
-Current improvement areas is
-- When direction is not forward use distance to optimize where to go, try turn and if forward distance is ok go forward a litle
-- But in general a  smarter algorithm for movement is needed
+
 Click tp see the video when it tries to avoid crashing
 [![Watch the video](image_car2/robot_car2_front.jpeg)](https://youtu.be/d5yBfNilb-g)
 Below is some good pictures
