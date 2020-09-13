@@ -17,7 +17,8 @@ Comming objectives
 - map room
 
 
-Version 2, is inproved by moving ultrasonic side sensors more to the front and replacing side sensors with ir sensors (10-80 cm)
+Version 2
+Is inproved by moving ultrasonic side sensors more to the front and replacing side sensors with ir sensors (10-80 cm)
 With the new ultrasonic coverage in the front we get a better view of if we are risking to hit an obstacle.
 Core components:
 2 Motors + battery pack for motors
