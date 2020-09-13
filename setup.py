@@ -23,8 +23,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-          'distance = bback_car.distancesensor:main',
-          'autodrive = bback_car.autodrive:main',
+          'distance = bback_car.usdistance:main',
+          'driver = bback_car.driver:main',
           'listener = bback_car.subscriber_member_function:main'
         ],
     },
