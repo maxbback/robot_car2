@@ -35,9 +35,10 @@ See ardunio directory.
 For IR sensors I used a library for SHARP ir sensors to calculate the right distance based on a complex response curve.
 https://drive.google.com/file/d/1yglX0lYazxgC3TkjZ83E_IVw0gYlycW0/view
 
-
-
-
+[![Watch the video](image_car2/IMG_2060.jpeg)](image_car2/IMG_2060.jpeg)
+[![Watch the video](image_car2/IMG_2061.jpeg)](image_car2/IMG_2061.jpeg)
+[![Watch the video](image_car2/IMG_2062.jpeg)](image_car2/IMG_2062.jpeg)
+[![Watch the video](image_car2/IMG_2063.jpeg)](image_car2/IMG_2063.jpeg)
 
 Version 1
 Core components:
@@ -66,8 +67,8 @@ To handle this I am using two nodes
 Click tp see the video when it tries to avoid crashing
 [![Watch the video](image_car2/robot_car2_front.jpeg)](https://youtu.be/d5yBfNilb-g)
 Below is some good pictures
-[![Watch the video](image_car2/robot_car2_front.jpeg)](image_car2/robot_car2_front.jpeg)
 [![Watch the video](image_car2/IMG_2048.jpeg)](image_car2/IMG_2048.jpeg)
+[![Watch the video](image_car2/robot_car2_front.jpeg)](image_car2/robot_car2_front.jpeg)
 [![Watch the video](image_car2/IMG_2049.jpeg)](image_car2/IMG_2049.jpeg)
 [![Watch the video](image_car2/IMG_2050.jpeg)](image_car2/IMG_2050.jpeg)
 [![Watch the video](https://youtu.be/d5yBfNilb-g)](https://youtu.be/d5yBfNilb-g)
