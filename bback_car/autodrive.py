@@ -168,14 +168,14 @@ class AutoDrive(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    autodrive = AutoDrive()
+    autodrive0 = AutoDrive()
 
     rclpy.spin(autodrive)
 
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically
     # when the garbage collector destroys the node object)
-    avoid.destroy_node()
+    autodrive.destroy_node()
     rclpy.shutdown()
 
 
