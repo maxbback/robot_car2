@@ -42,6 +42,9 @@ https://drive.google.com/file/d/1yglX0lYazxgC3TkjZ83E_IVw0gYlycW0/view
 [![Watch the video](image_car2/IMG_2063.jpeg)](image_car2/IMG_2063.jpeg)
 
 Version 1
+Key python nodes are;
+- usdistance.py
+- driver.py
 Core components:
 2 Motors + battery pack for motors
 Motor controller board
