@@ -26,6 +26,7 @@ Motor controller board
 Raspberry pi
 3 HC-SR04 ultrasonci sensors
 3 Sharp IR distance sensors
+Library needed for ardunio sharp ir sensor https://www.arduinolibraries.info/libraries/z-sharp-ir-library
 Arduino Nano kompatibelt V3.0 ATMEGA328 
 You also need a bunch of cabels
 
