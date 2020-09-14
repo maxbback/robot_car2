@@ -37,6 +37,12 @@ See ardunio directory.
 For IR sensors I used a library for SHARP ir sensors to calculate the right distance based on a complex response curve.
 https://drive.google.com/file/d/1yglX0lYazxgC3TkjZ83E_IVw0gYlycW0/view
 
+More code is comming, at the moment I am wring the node intigrating arduino, its basic time out based readline process which is pushing the data to topics.
+I plan then to buil a few more nodes
+- arduinoSensor.py # Colleting sensor data and publishing it on topics
+- driverv2.py # node planning the movement based on sensor data
+- autocar.py # node based on goal based driving
+
 [![Watch the video](image_car2/IMG_2060.jpeg)](image_car2/IMG_2060.jpeg)
 [![Watch the video](image_car2/IMG_2061.jpeg)](image_car2/IMG_2061.jpeg)
 [![Watch the video](image_car2/IMG_2062.jpeg)](image_car2/IMG_2062.jpeg)
