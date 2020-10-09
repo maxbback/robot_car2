@@ -43,6 +43,9 @@ I plan then to buil a few more nodes
 - driverv2.py # node planning the movement based on sensor data
 - autocar.py # node based on goal based driving
 
+To enable SLAM I have started to calculate speed from ultrasonic sensors to be used by central node to calibrate speed based on motor power, my working idea is that robot find a wall and drive against it a number of time with different motor power to collect a power to speed translation table.
+With this information we can start tracking how far we moved.
+
 [![Watch the video](image_car2/IMG_2060.jpeg)](image_car2/IMG_2060.jpeg)
 [![Watch the video](image_car2/IMG_2061.jpeg)](image_car2/IMG_2061.jpeg)
 [![Watch the video](image_car2/IMG_2062.jpeg)](image_car2/IMG_2062.jpeg)
