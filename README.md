@@ -1,3 +1,21 @@
+#robot_car3
+Moving to version 3
+
+Car is not getting more fancy or cool, its hosted in a small platic lunch box so a bit instable
+Lets see if I can improve on the HW in next generation
+
+Ok but back to the core things, HW is cool but not the esential yet
+Everything is broken up into small modules
+The ardunio part is just focusing on gathering sensor data and has been improved a bit
+A Sg-90 servo motor is used to rotate 3-177 degree to allow a bit if HW limitation as it do not realy cover 180 degree
+I have attached 4 sensors on top of the servo to gather almost 360 degrees data information, 2 sensors on each side ultrasonic and infrared sensor
+In the fron of the car I have a IR bumper to sense if we colide and an ultrasonic sensor
+
+Pictures will come soone as well as the updated code
+
+And information on performance of the new model
+
+
 # robot_car2
 Moving this to version 2
 - Adding ardunio card for sensor data collection
