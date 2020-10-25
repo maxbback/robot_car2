@@ -25,7 +25,10 @@ class Motor(Node):
         super().__init__('motor')
         # #topic consumer motorpower 
         # Motor direction and power events
-        # overrule break, duration, left power, right power
+        # - reset emergency break
+        # - duration , specifies time motor run before turning them of, 0 do not turn motors of
+        # - left power
+        # - right power
         # power is from -100 to 100, negativ is backwards
         self.subscription_motorpower = self.create_subscription(
             Int16MultiArray,
@@ -84,26 +87,26 @@ class Motor(Node):
         self.pinMotorRForwards = 8
         self.pinMotorRBackwards = 7
         
-        self.Frequency = 100
+        # power frequency is simulating analogue power, by pulsing the power
+        self.Frequency = 100 # Turn on and of power frequency in hz
+        # Min power duration
         self.MinPower = 15
-        
-        # How long the pin stays on each cycle, as a percent
-        self.MinCycle = 15
-        self.DutyCycleLCompensate = 0 # compensation from inbalanced drift
+        # power duration compensattion to adjust for motor difrentiations
+        self.leftMotorAdjustment = 0 # compensation from inbalanced drift
+        self.rightMotorAdjustment = 0 # compensation from inbalanced drift
+
         # Setting the duty cycle to 0 means the motors will not turn
         self.Stop = 0
+
+        # Setup gpio
         gpio.setmode(gpio.BCM)
-        gpio.setwarnings(False)
+        gpio.setwarnings(False) # Ignore warnings
         # Enabling the outpound motor ports
         gpio.setup(self.pinMotorLForwards, gpio.OUT)
         gpio.setup(self.pinMotorLBackwards, gpio.OUT)
         gpio.setup(self.pinMotorRForwards, gpio.OUT)
         gpio.setup(self.pinMotorRBackwards, gpio.OUT)
  
-
-        self.objectiveDirection = 0
-
-
         # Set the GPIO to software PWM at 'Frequency' Hertz
         self.pwmMotorLForwards = gpio.PWM(self.pinMotorLForwards, self.Frequency)
         self.pwmMotorLBackwards = gpio.PWM(self.pinMotorLBackwards, self.Frequency)
@@ -117,7 +120,7 @@ class Motor(Node):
         self.pwmMotorRBackwards.start(self.Stop)
 
     # Turn all motors off
-    def stopMotors(self):
+    def stopMotor(self):
         self.get_logger().info('Stop ')
 
         self.pwmMotorLForwards.ChangeDutyCycle(self.Stop)
@@ -182,7 +185,7 @@ class Motor(Node):
             
             
     def motorpower_listener_callback(self,msg):
-        # overrule break, duration, left power, right power
+        # reset emergency break, duration, left power, right power
         self.runMotor(msg.data[0], msg.data[1], msg.data[2], msg.data[3])
 
 
