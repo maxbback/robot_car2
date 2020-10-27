@@ -1,10 +1,9 @@
+import time
+import sys
 import signal
+
 from std_msgs.msg import Bool
 from std_msgs.msg import Int16MultiArray
-from rclpy.exceptions import ParameterNotDeclaredException
-from rcl_interfaces.msg import ParameterType
-import serial
-
 
 def signal_handler(signal, frame): # ctrl + c -> exit program
         print('You pressed Ctrl+C!')
@@ -16,20 +15,62 @@ class ArduinoSensorCollector(Node):
     def __init__(self):
         super().__init__('arduinosensorcolelctor')
 
-        # topic publisher motorstatus 
-        # Int16 array
-        # - speed, -1 unknown, m/s based on motor rotation
-        # - emergencybreak, is emergency break pulled or not
-        # - left power, -100 to 100, negativ backwards
-        # - right power, -100 to 100, negativ backwards
-        
+        # topic publisher motoremergencybreak
+        # subscribe for emergency breaks
+        # breaks must be overruled to allow power on the engines
         self.motorEmergencyBreakPublisher = self.create_publisher(Bool, 'motoremergencybreak', 1)
 
+        # #topic consumer motorpower
+        # Motor direction and power events
+        # - reset emergency break
+        # - duration , specifies time motor run before turning them of, 0 do not turn motors of
+        # - left power
+        # - right power
+        # power is from -100 to 100, negativ is backwards
 
-arduino = serial.Serial('/dev/ttyUSB0',115200,timeout=.1)
-while 1:
-#    with serial.Serial('/dev/ttyUSB0',115200,timeout=1) as ser:
-        line = arduino.readline()[:-2]
-        if line:
-            line = line.decode("utf-8") 
-            print(line)
+        self.motorStatusPublisher = self.create_publisher(Int16MultiArray, 'motorpower', 1)
+
+        self.arduino = serial.Serial('/dev/ttyUSB0',115200,timeout=.1)
+
+
+        #timer_period = 0.5  # seconds
+        #self.timer = self.create_timer(timer_period, self.timer_callback)
+        self.timer_callback()
+
+
+    def timer_callback(self):
+        msg = Int32()
+
+        # Message type
+        # 0 send bumper status
+        # 1 front US
+        # 2 front IR
+        # 3 scanner US
+        # 4 scanner IR
+        #
+        # Message format
+        # type:angle:distance:speed
+
+        while 1:
+            #    with serial.Serial('/dev/ttyUSB0',115200,timeout=1) as ser:
+            line = self.arduino.readline()[:-2]
+            if line:
+                line = line.decode("utf-8")
+                print(line)
+
+def main(args=None):
+    rclpy.init(args=args)
+
+    sensorcollector = ArduinoSensorCollector()
+
+    rclpy.spin(sensorcollector)
+
+    # Destroy the node explicitly
+    # (optional - otherwise it will be done automatically
+    # when the garbage collector destroys the node object)
+    sensorcollector.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
