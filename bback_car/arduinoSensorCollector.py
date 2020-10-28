@@ -1,9 +1,11 @@
 import time
 import sys
 import signal
+import serial
 
 from std_msgs.msg import Bool
 from std_msgs.msg import Int16MultiArray
+from std_msgs.msg import Int16
 
 def signal_handler(signal, frame): # ctrl + c -> exit program
         print('You pressed Ctrl+C!')
@@ -20,16 +22,18 @@ class ArduinoSensorCollector(Node):
         # breaks must be overruled to allow power on the engines
         self.motorEmergencyBreakPublisher = self.create_publisher(Bool, 'motoremergencybreak', 1)
 
-        # #topic consumer motorpower
-        # Motor direction and power events
-        # - reset emergency break
-        # - duration , specifies time motor run before turning them of, 0 do not turn motors of
-        # - left power
-        # - right power
-        # power is from -100 to 100, negativ is backwards
+        # #topic publsiher frontdistance
+        # Front distance
+        # - distance
+        self.frontDistancePublisher = self.create_publisher(Int16, 'frontdistance', 1)
 
-        self.motorStatusPublisher = self.create_publisher(Int16MultiArray, 'motorpower', 1)
+        # #topic publisher scannerdistance
+        # scanner distance
+        # - degree
+        # - distance
+        self.distancePublisher = self.create_publisher(Int16MultiArray, 'scannerdistance', 1)
 
+        # Setup serial connection
         self.arduino = serial.Serial('/dev/ttyUSB0',115200,timeout=.1)
 
 
@@ -39,7 +43,9 @@ class ArduinoSensorCollector(Node):
 
 
     def timer_callback(self):
-        msg = Int32()
+        frontMsg = Int16()
+        bumperMsg = Bool()
+        distanceMsg = Int16MultiArray()
 
         # Message type
         # 0 send bumper status
@@ -53,10 +59,22 @@ class ArduinoSensorCollector(Node):
 
         while 1:
             #    with serial.Serial('/dev/ttyUSB0',115200,timeout=1) as ser:
-            line = self.arduino.readline()[:-2]
-            if line:
-                line = line.decode("utf-8")
-                print(line)
+            #line = self.arduino.readline()[:-2]
+            sensorLine = self.arduino.readline()[:]
+            if sensorLine:
+                sensorLine = sensorLine.decode("utf-8")
+                sensorMessageArray = sensorLine.split(':')
+                if sensorMessageArray[0] == 0: # Front bumper
+                    bumperMsg.data = sensorMessageArray[2]
+                    self.motorEmergencyBreakPublisher.publish(bumperMsg)
+                elif sensorMessageArray[0] < 3: # Front sensor
+                    frontMsg.data = sensorMessageArray[2]
+                    self.frontDistancePublisher.publish(frontMsg)
+                else: # Scanner
+                    del sensorMessageArray[0]
+                    distanceMsg.data = sensorMessageArray
+                    self.distancePublisher.publish(distanceMsg)
+
 
 def main(args=None):
     rclpy.init(args=args)
