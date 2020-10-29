@@ -15,6 +15,21 @@ Pictures will come soone as well as the updated code
 
 And information on performance of the new model
 
+The Logic and nodes
+In this version everything is broken up into small modules a node to make each part independent
+For example I have a motor power node that subscribes to two topics emergency break and motor power
+this node has no inteligence at all it just controls the motor power
+The emergency break prevents any movement until break are released by bumper or that we overide and force a movement to get out of the situation
+It also publish current state and an estimation of speed based on collected information of power in relation to moving against an obstacle
+
+We have then distance sensor collector node, collecting sensor information from the arduino card where I have hocked in 3 ultrasonic sensors
+one fron and 2 sitting on the servo to get a 360 distance view
+And a front bumper ir sensor
+This node sends an emergency break message to the motor node if bumper is set and then a release of break when we are far enough for a reset
+It also publish front distance and scanner distance
+
+
+
 
 # robot_car2
 Moving this to version 2
