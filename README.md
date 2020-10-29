@@ -11,7 +11,9 @@ A Sg-90 servo motor is used to rotate 3-177 degree to allow a bit if HW limitati
 I have attached 4 sensors on top of the servo to gather almost 360 degrees data information, 2 sensors on each side ultrasonic and infrared sensor
 In the fron of the car I have a IR bumper to sense if we colide and an ultrasonic sensor
 
-Pictures will come soone as well as the updated code
+[![Watch the video](image_car2/image_car3/IMG_2080.jpeg)](image_car2/image_car3/IMG_2080.jpeg)
+[![Watch the video](image_car2/image_car3/IMG_2081.jpeg)](image_car2/image_car3/IMG_2081.jpeg)
+[![Watch the video](image_car2/image_car3/IMG_2082.jpeg)](image_car2/image_car3/IMG_2082.jpeg)
 
 And information on performance of the new model
 
