@@ -1,7 +1,5 @@
-#include <SharpIR.h>
 #include <Servo.h>
 
-#define irModel 1080
 
 // Collect sensor information from
 // Ultrasonic distance
@@ -42,15 +40,12 @@
 long duration;
 int usDistance;
 int usSpeed;
-int irDistance;
-int irSpeed;
 int tmpDistance;
 // curent timestamp
 long currentTime = millis();
 
 // Max distance from US if ouside we consider it invalid
 int maxUsDistance = 400;
-int maxIrDistance = 50;
 
 unsigned long scannerTime[180];
 int scannerUsMeasure[180]; //distance
