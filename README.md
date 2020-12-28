@@ -8,12 +8,37 @@ Ok but back to the core things, HW is cool but not the esential yet
 Everything is broken up into small modules
 The ardunio part is just focusing on gathering sensor data and has been improved a bit
 A Sg-90 servo motor is used to rotate 3-177 degree to allow a bit if HW limitation as it do not realy cover 180 degree
-I have attached 4 sensors on top of the servo to gather almost 360 degrees data information, 2 sensors on each side ultrasonic and infrared sensor
+I have attached 2 sensors on top of the servo to gather almost 360 degrees data information, 1 ultrasonic sensors on each side
 In the fron of the car I have a IR bumper to sense if we colide and an ultrasonic sensor
 
-Pictures will come soone as well as the updated code
+[![Watch the video](image_car2/image_car3/IMG_2080.jpeg)](image_car2/image_car3/IMG_2080.jpeg)
+[![Watch the video](image_car2/image_car3/IMG_2081.jpeg)](image_car2/image_car3/IMG_2081.jpeg)
+[![Watch the video](image_car2/image_car3/IMG_2082.jpeg)](image_car2/image_car3/IMG_2082.jpeg)
 
 And information on performance of the new model
+
+The Logic and nodes
+In this version everything is broken up into small modules a node to make each part independent
+Motor Power Node
+For example I have a motor power node that subscribes to two topics emergency break and motor power
+this node has no inteligence at all it just controls the motor power
+The emergency break prevents any movement until break are released by bumper or that we overide and force a movement to get out of the situation
+It also publish current state and an estimation of speed based on collected information of power in relation to moving against an obstacle for this it is collecting front distance, the speed relation to motor power is stored in a file to be used next time it starts, the speed power matrix have 3 columns, power,speed,verified.
+As soon as we have a measure we populate the whole table based on a liniar calculation, so lets say we drive against an obstacle with 50% power, after a number of samplings we know the speed and will then estimate nu speed for all power and then validate them continiosly 
+
+Sensor collector Node
+We have then distance sensor collector node, collecting sensor information from the arduino card where I have hocked in 3 ultrasonic sensors
+one front and 2 sitting on the servo to get a 360 distance view
+And a front bumper ir sensor
+This node sends an emergency break message to the motor node if bumper is set and then a release of break when we are far enough for a reset
+It also publish front distance and scanner distance
+
+Avoid obstacle Node
+This node is avoiding an obstacle on its way, if the room is divided in a 2 dimensional matrix with x and y and we are moving between x1,y1 to x2,y2 in a straight line and we find something blocking the way, this node is trying to go around it and then get back to the line of direction it was before
+If it is not possible to go around it, it we terminate and send out a notification that we need to find another way, to not get stuck forever in trying to get around we have a time limit in this node to give up, I might find a better way later
+
+
+
 
 
 # robot_car2
