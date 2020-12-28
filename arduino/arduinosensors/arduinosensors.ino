@@ -74,7 +74,6 @@ int scannerServoPin = 3;
 
 // Enable or disable sensores 0 == disabled
 int scannerUs = 1;
-int scannerUsNr = 0;
 int frontUs = 1;
 int bumperFront = 1;
 int scannerServoEnabled = 1;
@@ -180,33 +179,11 @@ int collectData(int angle) {
   s="1:90:" + String(usDistance) + ":" + String(usSpeed);
   Serial.println(s);
 
-  /*
-   //return 0;
-   if (scannerUsNr == 0) {
-    scannerUsNr = 1;
-   } else {
-    scannerUsNr = 0;
-   }
-   j=scannerUsNr;
-      sensorAngle = angle + scannerServoAngleMax * j;
-      usDistance = getUsDistance(scannerUsTriggerPin[j],scannerUsEchoPin[j]);
-      currentTime = millis();
-      // us
-      if (usDistance >= maxUsDistance) {
-        usDistance = scannerUsMeasure[sensorAngle];
-      }
-      
-      scannerUsMeasure[sensorAngle] = usDistance;
-
-      //type:angle:distance:speed
-      s="3:" + String(sensorAngle) + ":" + String(usDistance) + ":-1" ;
-      Serial.println(s);
-
- */     
+    
 
   for (int j = 0; j < 1; j = j + 1) {
-      Serial.println("fron collected " + String(angle) + " " + String(j));
-      Serial.println("trig " + String(scannerUsTriggerPin[j]) + " echo " + String(scannerUsEchoPin[j]));
+     // Serial.println("fron collected " + String(angle) + " " + String(j));
+     // Serial.println("trig " + String(scannerUsTriggerPin[j]) + " echo " + String(scannerUsEchoPin[j]));
       sensorAngle = angle + scannerServoAngleMax * j;
       usDistance = getUsDistance(scannerUsTriggerPin[j],scannerUsEchoPin[j]);
       currentTime = millis();
