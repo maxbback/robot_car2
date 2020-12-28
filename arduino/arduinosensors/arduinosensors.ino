@@ -78,7 +78,6 @@ int frontUs = 1;
 int bumperFront = 1;
 int scannerServoEnabled = 1;
 
-
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
