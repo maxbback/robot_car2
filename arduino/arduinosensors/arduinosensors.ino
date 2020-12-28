@@ -21,7 +21,7 @@
 // and right sensor collect -3 degree on left side
 //
 // We can send up to 10 differnt messages types
-// 0 send bumper status
+// 0 send bumper status 0 bumped, 1 not bumped
 // 1 front US
 // 2 front IR
 // 3 scanner US
@@ -48,18 +48,18 @@ long currentTime = millis();
 int maxUsDistance = 400;
 
 unsigned long scannerTime[180];
-int scannerUsMeasure[180]; //distance
+int scannerUsMeasure[360]; //distance
 unsigned long frontUsMeasure[3]; // time,distance,speed
 int frontBumped = 0;
 
 // Pin configuration for scanner
-int scannerUsTriggerPin[2] = {3,5};
-int scannerUsEchoPin[2] = {4,6};
+int scannerUsTriggerPin[2] = {11,5};
+int scannerUsEchoPin[2] = {10,4};
 
 // Pin configuration front sensors
-int frontUsTriggerPin = 7;
+int frontUsTriggerPin = 9;
 int frontUsEchoPin = 8;
-int frontBumperPin = 9;
+int frontBumperPin = 2;
 
 
 
@@ -69,11 +69,12 @@ Servo scannerServo;
 int scannerServoAngle = 0;
 int scannerServoAngleMax = 177;
 int scannerServoAngleMin = 3;
-int scannerServoPin = 9;
+int scannerServoPin = 3;
 
 
 // Enable or disable sensores 0 == disabled
 int scannerUs = 1;
+int scannerUsNr = 0;
 int frontUs = 1;
 int bumperFront = 1;
 int scannerServoEnabled = 1;
@@ -115,20 +116,20 @@ void loop() {
   int bumped = 0;
   int speed = 0;
 
+
+  
+  for(scannerServoAngle = scannerServoAngleMin; scannerServoAngle < scannerServoAngleMax; scannerServoAngle = scannerServoAngle + 2)  
+  {                                  
   // Collect bumper
   if (bumperFront == 1) {
     bumped = getBumper(frontBumperPin);
     if (bumped != frontBumped) {
       //type:angle:distance:speed
-      s = "0:90" + String(bumped) + ":-1";
+      s = "0:90:" + String(bumped) + ":-1";
       Serial.println(s);
       frontBumped=bumped;      
     }
   }
-
-  
-  for(scannerServoAngle = scannerServoAngleMin; scannerServoAngle < scannerServoAngleMax; scannerServoAngle = scannerServoAngle + 2)  
-  {                                  
     s="1";
     scannerServo.write(scannerServoAngle);
     collectData(scannerServoAngle);            
@@ -137,6 +138,16 @@ void loop() {
   // now scan back from 180 to 0 degrees
   for(scannerServoAngle = scannerServoAngleMax; scannerServoAngle > scannerServoAngleMin; scannerServoAngle = scannerServoAngle - 2)    
   {                                
+  // Collect bumper
+  if (bumperFront == 1) {
+    bumped = getBumper(frontBumperPin);
+    if (bumped != frontBumped) {
+      //type:angle:distance:speed
+      s = "0:90:" + String(bumped) + ":-1";
+      Serial.println(s);
+      frontBumped=bumped;      
+    }
+  }
     s="1";
     scannerServo.write(scannerServoAngle);          
     collectData(scannerServoAngle);            
@@ -146,8 +157,10 @@ void loop() {
   
 }
 
-String collectData(int angle) {
+int collectData(int angle) {
   String s;
+  int sensorAngle;
+  int j;
 
   // time,distance,speed
   usDistance = getUsDistance(frontUsTriggerPin,frontUsEchoPin);
@@ -160,34 +173,59 @@ String collectData(int angle) {
   }
   frontUsMeasure[0] = currentTime;
   frontUsMeasure[1] = usDistance;
-  frontUsMeasure[1] = usSpeed;
+  frontUsMeasure[2] = usSpeed;
 
   
   //type:angle:distance:speed
-  s=s + "1:90:" + String(usDistance) + ":" + String(usSpeed);
+  s="1:90:" + String(usDistance) + ":" + String(usSpeed);
   Serial.println(s);
-  s=s + "2:90:" + String(irDistance) + ":" + String(irSpeed);
-  Serial.println(s);
-   
-  for (int i = 0; i < 2; i = i + 1) {
-      usDistance = getUsDistance(scannerUsTriggerPin[i],scannerUsEchoPin[i]);
+
+  /*
+   //return 0;
+   if (scannerUsNr == 0) {
+    scannerUsNr = 1;
+   } else {
+    scannerUsNr = 0;
+   }
+   j=scannerUsNr;
+      sensorAngle = angle + scannerServoAngleMax * j;
+      usDistance = getUsDistance(scannerUsTriggerPin[j],scannerUsEchoPin[j]);
       currentTime = millis();
       // us
       if (usDistance >= maxUsDistance) {
-        usDistance = scannerUsMeasure[angle  + scannerServoAngleMax * i];
-        usSpeed = -1;
-      } else {
-        usSpeed = getSpeed(scannerTime[angle],scannerUsMeasure[angle  + scannerServoAngleMax * i],usDistance,maxUsDistance);
+        usDistance = scannerUsMeasure[sensorAngle];
       }
       
-      scannerUsMeasure[angle  + scannerServoAngleMax * i] = usDistance;
+      scannerUsMeasure[sensorAngle] = usDistance;
 
       //type:angle:distance:speed
-      s=s + "3:" + String(angle  + scannerServoAngleMax * i) + ":" + String(usDistance) + ":" + String(usSpeed);
+      s="3:" + String(sensorAngle) + ":" + String(usDistance) + ":-1" ;
+      Serial.println(s);
+
+ */     
+
+  for (int j = 0; j < 1; j = j + 1) {
+      Serial.println("fron collected " + String(angle) + " " + String(j));
+      Serial.println("trig " + String(scannerUsTriggerPin[j]) + " echo " + String(scannerUsEchoPin[j]));
+      sensorAngle = angle + scannerServoAngleMax * j;
+      usDistance = getUsDistance(scannerUsTriggerPin[j],scannerUsEchoPin[j]);
+      currentTime = millis();
+      // us
+      if (usDistance >= maxUsDistance) {
+        usDistance = scannerUsMeasure[sensorAngle];
+      }
+      
+      scannerUsMeasure[sensorAngle] = usDistance;
+
+      //type:angle:distance:speed
+      s="3:" + String(angle  + scannerServoAngleMax * j) + ":" + String(usDistance) + ":-1" ;
       Serial.println(s);
 
   }
-  scannerTime[angle]=currentTime;
+
+scannerTime[angle]=currentTime;
+  //Serial.println("fron collected");
+  return 0;
 }
 
 int getSpeed(int lastTime, int lastDistance, int distance, int maxDistance) {
@@ -222,8 +260,9 @@ int getBumper(int pin) {
 }
 
 int getUsDistance(int trigPin, int echoPin) {
+
   digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
+  delayMicroseconds(10);
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
