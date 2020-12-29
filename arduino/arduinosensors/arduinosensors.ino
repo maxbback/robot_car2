@@ -32,6 +32,11 @@
 //
 // bumper sends a message when something change
 //
+//
+// Add calibration of angle on scanner with front sensor
+// calibrate in the range of angle of 20 degrees where it soposed to be inline
+// when calibration is done make adjustments based on the offset
+// att handling of negative angles due to ofset, which will then be by adding 360 to the angle
 
 
 
