@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2d1b21ce-13bf-4717-bdf5-9d841e6bcd7e" name="Default Changelist" comment="Cleaned out unneeded variables">
+      <change beforePath="$PROJECT_DIR$/arduino/arduinosensors.ino" beforeDir="false" afterPath="$PROJECT_DIR$/arduino/arduinosensors.ino" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="ProjectId" id="1jNsnokU4XUcyuEBMNY4hOJx5Rn" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bback_car" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/bback_car" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2d1b21ce-13bf-4717-bdf5-9d841e6bcd7e" name="Default Changelist" comment="" />
+      <created>1603656053487</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603656053487</updated>
+    </task>
+    <task id="LOCAL−00001" summary="more comments">
+      <created>1603658005577</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1603658005577</updated>
+    </task>
+    <task id="LOCAL−00002" summary="First version">
+      <created>1603658070202</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1603658070202</updated>
+    </task>
+    <task id="LOCAL−00003" summary="First version">
+      <created>1603658110513</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1603658110513</updated>
+    </task>
+    <task id="LOCAL−00004" summary="Almost done, shall add transformation of message to topic">
+      <created>1603777287205</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1603777287205</updated>
+    </task>
+    <task id="LOCAL−00005" summary="Arduino all code">
+      <created>1603909441170</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1603909441170</updated>
+    </task>
+    <task id="LOCAL−00006" summary="Prepared ready for test">
+      <created>1603912114355</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1603912114355</updated>
+    </task>
+    <task id="LOCAL−00007" summary="Prepared ready for test">
+      <created>1603954209272</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1603954209272</updated>
+    </task>
+    <task id="LOCAL−00008" summary="Prepared ready for test">
+      <created>1603954216587</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1603954216587</updated>
+    </task>
+    <task id="LOCAL−00009" summary="Prepared ready for test">
+      <created>1603954224260</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1603954224260</updated>
+    </task>
+    <task id="LOCAL−00010" summary="Imagesas">
+      <created>1603954622138</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1603954622138</updated>
+    </task>
+    <task id="LOCAL−00011" summary="Cleaning up, and removing all IR parts&#10;Mechanical solution was getting to clomsy with bot IR and US, so for this version I have removed all IR sensors">
+      <created>1605371667773</created>
+      <option name="number" value="LOCAL−00011" />
+      <option name="presentableId" value="LOCAL−00011" />
+      <updated>1605371667773</updated>
+    </task>
+    <task id="LOCAL−00012" summary="Fixed out of array range">
+      <created>1609160528782</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1609160528782</updated>
+    </task>
+    <task id="LOCAL−00013" summary="Cleaned out unneeded variables">
+      <created>1609160645868</created>
+      <option name="number" value="LOCAL−00013" />
+      <option name="presentableId" value="LOCAL−00013" />
+      <updated>1609160645868</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="more comments" />
+    <MESSAGE value="First version" />
+    <MESSAGE value="Almost done, shall add transformation of message to topic" />
+    <MESSAGE value="Arduino all code" />
+    <MESSAGE value="Prepared ready for test" />
+    <MESSAGE value="Imagesas" />
+    <MESSAGE value="Cleaning up, and removing all IR parts&#10;Mechanical solution was getting to clomsy with bot IR and US, so for this version I have removed all IR sensors" />
+    <MESSAGE value="Fixed out of array range" />
+    <MESSAGE value="Cleaned out unneeded variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned out unneeded variables" />
+  </component>
+</project>
